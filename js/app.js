@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Silent tracking notification
       if (window.Tracker) {
-        Tracker.trackPageOpen();
+        Tracker.trackEnterExperience();
       }
     });
   }

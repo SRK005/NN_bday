@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday, Nandoos 🖤 | A Journey For You</title>
+  <meta name="description" content="A special, interactive birthday wish and sincere apology experience created for Nandhini (Nandoos🖤).">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖤</text></svg>">
+</head>
+<body>
+
+  <!-- Ambient Visual Canvases -->
+  <canvas id="ambient-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Background Lighting Orbs -->
+  <div class="ambient-glow-top"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <!-- Hidden HTML5 Audio Element for Usurey -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/usurey.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Welcome / Audio Unlock Modal -->
+  <div id="audio-modal" class="audio-prompt-modal">
+    <div class="audio-prompt-box">
+      <div class="icon">💌</div>
+      <h3>For Nandhini (Nandoos🖤)</h3>
+      <p>I crafted a small world for you today. Please tap below to enter with sound on.</p>
+      <button id="btn-enter" class="btn-enter-experience">Open With Music ✨</button>
+    </div>
+  </div>
+
+  <main class="app-container">
+
+    <!-- Top Navigation & Floating Music Bar -->
+    <header class="top-nav">
+      <div class="brand-badge">
+        <span class="heart-icon">🖤</span>
+        <div>
+          <h1 class="title">To Nandhini</h1>
+          <span class="subtitle">My Nandoos</span>
+        </div>
+      </div>
+
+      <div class="music-player-widget">
+        <div class="vinyl-disc" id="vinyl-disc" title="Click to play/pause"></div>
+        <div class="track-info">
+          <span class="track-title">Usurey • Soorarai Pottru</span>
+          <span class="track-artist">Playing for you 🎵</span>
+        </div>
+        <button id="audio-toggle-btn" class="btn-audio-toggle" title="Play/Pause Music">▶</button>
+      </div>
+    </header>
+
+    <!-- 4-Step Progress Stepper -->
+    <nav class="stepper-bar" aria-label="Experience Steps">
+      <div class="stepper-line">
+        <div class="stepper-line-fill"></div>
+      </div>
+
+      <div class="step-node active" data-step="1">
+        <div class="step-icon">💌</div>
+        <span class="step-label">Apology</span>
+      </div>
+
+      <div class="step-node" data-step="2">
+        <div class="step-icon">📸</div>
+        <span class="step-label">Memories</span>
+      </div>
+
+      <div class="step-node" data-step="3">
+        <div class="step-icon">🎂</div>
+        <span class="step-label">Celebration</span>
+      </div>
+
+      <div class="step-node" data-step="4">
+        <div class="step-icon">📞</div>
+        <span class="step-label">Call Me</span>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         STEP 1: The Heartfelt Apology Letter
+         ===================================================================== -->
+    <section id="step-1" class="step-section active">
+      <article class="main-card">
+        <div class="card-header">
+          <span class="card-tag">Step 1 • From The Bottom Of My Heart</span>
+          <h2 class="card-title">Before I Celebrate <span class="highlight">Your Day...</span></h2>
+          <p class="card-desc">There is an unspoken truth I must say, because silence was my biggest mistake.</p>
+        </div>
+
+        <div class="envelope-wrapper">
+          <div class="envelope-container">
+            
+            <!-- Sealed Vintage Envelope -->
+            <div id="envelope-closed" class="envelope-closed">
+              <div id="wax-seal" class="wax-seal" title="Click to break the wax seal and open">N</div>
+              <p class="envelope-hint">Click the wax seal to read my confession ✨</p>
+            </div>
+
+            <!-- Unfolded Handwritten Letter -->
+            <div id="letter-unfolded" class="letter-unfolded">
+              <h3 class="letter-salutation">Dearest Nandhini (My Nandoos🖤),</h3>
+              <div class="letter-body">
+                <p>I know I am the last person who deserves to ask for your time today. But before your birthday passes, I need to look in the mirror and be completely honest with you.</p>
+
+                <p class="confession">
+                  "I stopped reaching out. I let the silence stretch. I didn't take the efforts to talk to you, and that was 100% my fault and my mistake. There is no excuse for making someone as precious as you feel neglected or distant."
+                </p>
+
+                <p>Every single day that passed without hearing your voice, your laugh, or your random thoughts felt heavy and empty. I kept thinking of reaching out, but I let hesitation get in the way of what mattered most—<strong>you</strong>.</p>
+
+                <p>I don't expect one letter to fix the silence. But today is the day you came into this world, and you deserve to know that you are deeply cherished, respected, and missed. I am so sorry for not being there the way I should have been.</p>
+
+                <p>Will you let me make it up to you today?</p>
+              </div>
+              <div class="letter-signature">
+                Forever your biggest idiot 🖤
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card-nav-actions">
+          <button class="btn-nav-next">Look At Our Memories ➔</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- =====================================================================
+         STEP 2: The Memory Scrapbook
+         ===================================================================== -->
+    <section id="step-2" class="step-section">
+      <article class="main-card">
+        <div class="card-header">
+          <span class="card-tag">Step 2 • The Scrapbook</span>
+          <h2 class="card-title">Why You Mean <span class="highlight">The World To Me</span></h2>
+          <p class="card-desc">Even in silence, every sweet memory of you stayed locked in my heart.</p>
+        </div>
+
+        <div class="sticky-note-banner">
+          <p class="sticky-text">"Silence never meant I forgot. It just meant I was missing you more than words could explain."</p>
+        </div>
+
+        <!-- Polaroid Gallery -->
+        <div class="scrapbook-grid">
+          
+          <!-- Polaroid 1 -->
+          <div class="polaroid-card">
+            <div class="polaroid-inner">
+              <div class="polaroid-front">
+                <div class="washi-tape"></div>
+                <div class="polaroid-img-box">
+                  <img src="assets/images/polaroid1.jpg" alt="Under Every Star Artwork" loading="lazy">
+                </div>
+                <p class="polaroid-caption">Under Every Star 🌌</p>
+                <span class="polaroid-flip-prompt">↺ Click to flip note</span>
+              </div>
+              <div class="polaroid-back">
+                <h4>A Quiet Truth</h4>
+                <p>"Whenever I look at the night sky, I still look for you. In a world full of noise, you were always the calm that made sense."</p>
+                <div class="note-heart">🖤</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Polaroid 2 -->
+          <div class="polaroid-card">
+            <div class="polaroid-inner">
+              <div class="polaroid-front">
+                <div class="washi-tape"></div>
+                <div class="polaroid-img-box">
+                  <img src="assets/images/polaroid2.jpg" alt="Cozy Coffee Date Artwork" loading="lazy">
+                </div>
+                <p class="polaroid-caption">The Little Things ☕</p>
+                <span class="polaroid-flip-prompt">↺ Click to flip note</span>
+              </div>
+              <div class="polaroid-back">
+                <h4>What I Miss Most</h4>
+                <p>"The warmth in your voice, your cute way of talking, and how effortlessly you make my worst days feel brighter. Nobody comes close."</p>
+                <div class="note-heart">☕🖤</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Polaroid 3 -->
+          <div class="polaroid-card">
+            <div class="polaroid-inner">
+              <div class="polaroid-front">
+                <div class="washi-tape"></div>
+                <div class="polaroid-img-box">
+                  <img src="assets/images/polaroid3.jpg" alt="Birthday Sparkle Artwork" loading="lazy">
+                </div>
+                <p class="polaroid-caption">The Purest Soul 🌸</p>
+                <span class="polaroid-flip-prompt">↺ Click to flip note</span>
+              </div>
+              <div class="polaroid-back">
+                <h4>Irreplaceable You</h4>
+                <p>"Nandoos, you have the kindest, sweetest heart. Never doubt how truly special and unforgettable you are to me."</p>
+                <div class="note-heart">✨🖤</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-nav-actions">
+          <button class="btn-nav-prev">← Back</button>
+          <button class="btn-nav-next">It's Time To Celebrate You! 🎂 ➔</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- =====================================================================
+         STEP 3: The Birthday Cake & Make A Wish
+         ===================================================================== -->
+    <section id="step-3" class="step-section">
+      <article class="main-card">
+        <div class="card-header">
+          <span class="card-tag">Step 3 • Make A Wish</span>
+          <h2 class="card-title">Happy Birthday, <span class="highlight">Nandoos! 🖤</span></h2>
+          <p class="card-desc">Close your eyes, hold a wish close to your heart, and blow out the candles!</p>
+        </div>
+
+        <div class="cake-stage">
+          
+          <!-- Interactive Birthday Cake -->
+          <div class="cake-wrapper" id="cake-wrapper">
+            
+            <!-- Candles Row (5 Candles) -->
+            <div class="candles-row">
+              <div class="candle" data-id="1">
+                <div class="flame"></div>
+                <div class="smoke-puff"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle" data-id="2">
+                <div class="flame"></div>
+                <div class="smoke-puff"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle" data-id="3">
+                <div class="flame"></div>
+                <div class="smoke-puff"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle" data-id="4">
+                <div class="flame"></div>
+                <div class="smoke-puff"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle" data-id="5">
+                <div class="flame"></div>
+                <div class="smoke-puff"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+            </div>
+
+            <!-- Top Cake Tier -->
+            <div class="cake-tier-top">
+              <div class="frosting-drips"></div>
+            </div>
+
+            <!-- Bottom Cake Tier -->
+            <div class="cake-tier-bottom">
+              <span class="cake-icing-decor">Nandoos 🖤</span>
+            </div>
+
+            <!-- Plate & Stand -->
+            <div class="cake-stand"></div>
+            <div class="cake-stand-base"></div>
+          </div>
+
+          <!-- Blow Controls -->
+          <div class="blow-controls">
+            <p id="blow-status" class="blow-status-text">Tap the candles to blow them out 🕯️💨</p>
+            <button id="btn-blow-all" class="btn-blow-candles">
+              <span>Blow Out All Candles</span> 🕯️💨
+            </button>
+          </div>
+
+          <!-- Hidden Birthday Letter (Revealed after candles are blown) -->
+          <div id="bday-revealed-card" class="birthday-letter-card">
+            <div class="bday-header-badge">✨ Happy Birthday, Nandhini! ✨</div>
+            <p class="bday-message">
+              "May this year bring you all the love, happiness, peace, and dreams your heart desires. Seeing you smile and hearing you laugh is genuinely the best thing in the world. Have the most magical birthday today!"
+            </p>
+            <p style="font-family: var(--font-hand); font-size: 1.5rem; color: var(--rose-light);">
+              Your wish is on its way to the stars 🌟
+            </p>
+          </div>
+
+        </div>
+
+        <div class="card-nav-actions">
+          <button class="btn-nav-prev">← Back</button>
+          <button class="btn-nav-next">I Have One Final Wish... 📞 ➔</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- =====================================================================
+         STEP 4: The Climax ("Call Me, Nandoos🖤")
+         ===================================================================== -->
+    <section id="step-4" class="step-section">
+      <article class="main-card">
+        <div class="card-header">
+          <span class="card-tag">Final Step • The Climax</span>
+          <h2 class="card-title">Can I Hear <span class="highlight">Your Voice?</span></h2>
+          <p class="card-desc">A website is just code. But hearing your voice today would mean everything to me.</p>
+        </div>
+
+        <div class="climax-container">
+          
+          <!-- Smartphone Incoming Call Card -->
+          <div class="phone-call-card">
+            <div class="caller-avatar">
+              <div class="avatar-pulse"></div>
+              <span>🥺</span>
+            </div>
+            <div class="caller-status">Incoming Call Request</div>
+            <h3 class="caller-name">Your Idiot 🖤</h3>
+            <p class="caller-note">"Holding my breath waiting for your call..."</p>
+
+            <div class="call-actions-group">
+              <!-- Direct Phone Call Button -->
+              <a href="tel:+916379044546" id="btn-call-direct" class="btn-direct-call">
+                <span>📞 Call Me Directly (6379044546)</span>
+              </a>
+
+              <!-- WhatsApp Chat Button -->
+              <a href="https://wa.me/916379044546?text=Okay%20idiot,%20you%20are%20still%20in%20trouble,%20but%20Happy%20Birthday%20to%20me%20🖤%20Let's%20talk." target="_blank" rel="noopener" id="btn-whatsapp-direct" class="btn-whatsapp-call">
+                <span>💬 Chat On WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Playful Interactive Decision Box -->
+          <div class="playful-decision-box">
+            <p class="playful-question">Will you forgive this idiot and call him today?</p>
+            <div class="decision-buttons">
+              <button id="btn-forgive-yes" class="btn-forgive-yes">Yes, Calling Right Now! 📞</button>
+              <button id="btn-evasive" class="btn-forgive-no">Still Thinking... 😤</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-nav-actions">
+          <button class="btn-nav-prev">← Back</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>Crafted with all my heart for Nandhini (Nandoos) <span class="footer-heart">🖤</span></p>
+      <p style="font-size: 0.72rem; opacity: 0.65;">Happy Birthday • Always Thinking Of You</p>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript Modules -->
+  <script src="js/tracker.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/cake.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

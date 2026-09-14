@@ -1,0 +1,186 @@
+/* ==========================================================================
+   ROMANTIC SCRAPBOOK & BIRTHDAY EXPERIENCE
+   Responsive & Mobile Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 12px 12px 60px 12px;
+  }
+
+  .top-nav {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .track-info {
+    max-width: 120px;
+  }
+
+  .track-title {
+    font-size: 0.75rem;
+    max-width: 120px;
+  }
+
+  .brand-badge .title {
+    font-size: 0.95rem;
+  }
+
+  .main-card {
+    padding: 26px 18px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 1.75rem;
+  }
+
+  .card-desc {
+    font-size: 0.92rem;
+  }
+
+  /* Stepper on Mobile */
+  .stepper-bar {
+    margin-bottom: 22px;
+  }
+
+  .step-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .step-label {
+    font-size: 0.65rem;
+  }
+
+  /* Step 1 Letter */
+  .envelope-closed {
+    padding: 35px 20px;
+  }
+
+  .wax-seal {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+  }
+
+  .letter-unfolded {
+    padding: 28px 20px;
+  }
+
+  .letter-salutation {
+    font-size: 1.7rem;
+  }
+
+  .letter-body {
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  /* Step 2 Scrapbook */
+  .scrapbook-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .polaroid-card {
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 330px;
+  }
+
+  /* Step 3 Cake */
+  .cake-wrapper {
+    width: 240px;
+    height: 220px;
+  }
+
+  .cake-tier-top {
+    width: 140px;
+    height: 50px;
+  }
+
+  .cake-tier-bottom {
+    width: 190px;
+    height: 60px;
+  }
+
+  .cake-stand {
+    width: 220px;
+  }
+
+  .candles-row {
+    gap: 16px;
+  }
+
+  .candle-stick {
+    height: 40px;
+    width: 10px;
+  }
+
+  .flame {
+    width: 12px;
+    height: 20px;
+  }
+
+  /* Step 4 Climax */
+  .phone-call-card {
+    padding: 26px 18px;
+    border-radius: 22px;
+  }
+
+  .caller-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .caller-name {
+    font-size: 1.5rem;
+  }
+
+  .btn-direct-call {
+    font-size: 1.02rem;
+    padding: 14px 20px;
+  }
+
+  .btn-whatsapp-call {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+  }
+
+  .playful-decision-box {
+    padding: 18px 14px;
+  }
+
+  .playful-question {
+    font-size: 1.35rem;
+  }
+
+  .card-nav-actions {
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  .btn-nav-prev {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .btn-nav-next {
+    padding: 10px 20px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand-badge .subtitle {
+    display: none;
+  }
+
+  .card-title {
+    font-size: 1.55rem;
+  }
+}

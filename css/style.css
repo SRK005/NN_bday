@@ -1,0 +1,1276 @@
+/* ==========================================================================
+   ROMANTIC SCRAPBOOK & BIRTHDAY EXPERIENCE FOR NANDHINI (NANDOOS🖤)
+   Core Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-deep: #0e0a14;
+  --bg-card: rgba(28, 20, 36, 0.75);
+  --bg-card-hover: rgba(38, 28, 48, 0.85);
+  --bg-paper: #fffaf5;
+  --text-dark: #2d232e;
+  --text-light: #f7f3f9;
+  --text-muted: #b8a9c4;
+  
+  --primary: #e63946;
+  --primary-glow: rgba(230, 57, 70, 0.35);
+  --rose-light: #ffccd5;
+  --rose-accent: #ff758f;
+  --gold: #f4a261;
+  --gold-glow: rgba(244, 162, 97, 0.4);
+  --candle-flame: #ffb703;
+  --candle-glow: rgba(255, 183, 3, 0.6);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-hand: 'Caveat', cursive;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shadows & Glass */
+  --shadow-glass: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.12);
+  --border-subtle: 1px solid rgba(255, 200, 220, 0.2);
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-deep);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Background Canvas & Ambient Starfield */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Ambient Radial Glow */
+.ambient-glow-top {
+  position: fixed;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.18) 0%, rgba(244, 162, 97, 0.08) 50%, transparent 80%);
+  filter: blur(60px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ambient-glow-bottom {
+  position: fixed;
+  bottom: -150px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(142, 68, 173, 0.15) 0%, rgba(230, 57, 70, 0.05) 50%, transparent 80%);
+  filter: blur(70px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px 80px 16px;
+}
+
+/* ==========================================================================
+   Header & Floating Music Bar
+   ========================================================================== */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(28, 20, 36, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: var(--border-glass);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-badge .heart-icon {
+  color: var(--primary);
+  font-size: 1.2rem;
+  animation: heartPulse 1.8s ease-in-out infinite;
+}
+
+.brand-badge .title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.brand-badge .subtitle {
+  font-size: 0.75rem;
+  color: var(--rose-light);
+  opacity: 0.85;
+}
+
+/* Floating Vinyl Music Player */
+.music-player-widget {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vinyl-disc {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2a2a 20%, #111 60%, #333 100%);
+  border: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.vinyl-disc::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.vinyl-disc.spinning {
+  animation: spinVinyl 3.5s linear infinite;
+  border-color: var(--rose-accent);
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.btn-audio-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 0.85rem;
+}
+
+.btn-audio-toggle:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   Progress Stepper
+   ========================================================================== */
+.stepper-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0 8px;
+  position: relative;
+}
+
+.stepper-line {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.stepper-line-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--gold));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.step-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1d1624;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+.step-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.step-node.active .step-icon {
+  background: var(--primary);
+  border-color: #fff;
+  color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 0 18px var(--primary-glow);
+}
+
+.step-node.active .step-label {
+  color: #fff;
+  font-weight: 600;
+}
+
+.step-node.completed .step-icon {
+  background: #2a1e35;
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ==========================================================================
+   Step Sections & Cards
+   ========================================================================== */
+.step-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: 100%;
+}
+
+.step-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.main-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose-accent);
+  background: rgba(255, 117, 143, 0.12);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 117, 143, 0.25);
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.card-title span.highlight {
+  background: linear-gradient(120deg, #ff758f, #f4a261);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   STEP 1: The Wax-Sealed Apology Letter
+   ========================================================================== */
+.envelope-wrapper {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 35px 0;
+}
+
+.envelope-container {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.envelope-container:hover {
+  transform: translateY(-4px);
+}
+
+/* Vintage Closed Envelope Front */
+.envelope-closed {
+  background: linear-gradient(135deg, #2b1f33 0%, #1e1526 100%);
+  border: 1px solid rgba(255, 200, 220, 0.25);
+  border-radius: 18px;
+  padding: 50px 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.envelope-closed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.04), transparent);
+  pointer-events: none;
+}
+
+.wax-seal {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d90429 20%, #9b2226 80%, #6a040f 100%);
+  border: 3px solid #ff4d6d;
+  box-shadow: 0 6px 20px rgba(217, 4, 41, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  animation: waxPulse 2.5s infinite ease-in-out;
+}
+
+.wax-seal:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 25px rgba(217, 4, 41, 0.7);
+}
+
+.envelope-hint {
+  font-size: 0.95rem;
+  color: var(--rose-light);
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+/* Unfolded Handwritten Letter */
+.letter-unfolded {
+  display: none;
+  background: var(--bg-paper);
+  color: var(--text-dark);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(230, 200, 170, 0.25);
+  border: 1px solid #e0d4c8;
+  position: relative;
+  transform-origin: top center;
+  animation: paperUnfold 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Paper Texture & Washi Tape on Letter */
+.letter-unfolded::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 26px;
+  background: rgba(230, 57, 70, 0.55);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-left: 2px dashed rgba(255, 255, 255, 0.4);
+  border-right: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.letter-salutation {
+  font-family: var(--font-hand);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #780000;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.letter-body {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: #33272a;
+}
+
+.letter-body p {
+  margin-bottom: 18px;
+}
+
+.letter-body p.confession {
+  background: rgba(230, 57, 70, 0.08);
+  padding: 14px 18px;
+  border-left: 3px solid var(--primary);
+  border-radius: 4px;
+  font-style: italic;
+  color: #4a1e28;
+}
+
+.letter-signature {
+  margin-top: 30px;
+  text-align: right;
+  font-family: var(--font-hand);
+  font-size: 1.7rem;
+  color: #780000;
+}
+
+/* ==========================================================================
+   STEP 2: The Memory Scrapbook (Polaroids & Sticky Notes)
+   ========================================================================== */
+.scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px;
+  margin: 25px 0 35px 0;
+}
+
+/* 3D Flippable Polaroid Frame */
+.polaroid-card {
+  perspective: 1000px;
+  cursor: pointer;
+  min-height: 340px;
+}
+
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.polaroid-card.flipped .polaroid-inner {
+  transform: rotateY(180deg);
+}
+
+.polaroid-front, .polaroid-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Front: Photo & Handwritten Caption */
+.polaroid-front {
+  background: #ffffff;
+  padding: 14px 14px 24px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border: 1px solid #e9e5e0;
+}
+
+/* Washi Tape Strip */
+.washi-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 85px;
+  height: 22px;
+  background: rgba(244, 162, 97, 0.7);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  z-index: 5;
+}
+
+.polaroid-card:nth-child(2) .washi-tape {
+  background: rgba(255, 117, 143, 0.7);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.polaroid-card:nth-child(3) .washi-tape {
+  background: rgba(142, 68, 173, 0.6);
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.polaroid-img-box {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #111;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.polaroid-card:hover .polaroid-img-box img {
+  transform: scale(1.04);
+}
+
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: #2b2024;
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.polaroid-flip-prompt {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Back: Heartfelt Secret Note */
+.polaroid-back {
+  background: #fff8ef;
+  transform: rotateY(180deg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #3b2d32;
+  border: 1px solid #ebd9c8;
+}
+
+.polaroid-back h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #9b2226;
+  margin-bottom: 12px;
+}
+
+.polaroid-back p {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: #3b2d32;
+}
+
+.polaroid-back .note-heart {
+  color: var(--primary);
+  text-align: right;
+  font-size: 1.4rem;
+  margin-top: 14px;
+}
+
+/* Sticky Note Banner */
+.sticky-note-banner {
+  background: #fff3b0;
+  color: #3a2e10;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  margin: 15px 0 25px 0;
+  position: relative;
+  transform: rotate(-0.8deg);
+}
+
+.sticky-note-banner::before {
+  content: '📌';
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  font-size: 1.2rem;
+}
+
+.sticky-text {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ==========================================================================
+   STEP 3: The Birthday Celebration & Interactive Cake
+   ========================================================================== */
+.cake-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 35px 0;
+  position: relative;
+}
+
+/* Realistic CSS / SVG Birthday Cake */
+.cake-wrapper {
+  position: relative;
+  width: 280px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Candles Row */
+.candles-row {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: -5px;
+  z-index: 5;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.candle:hover {
+  transform: scale(1.1);
+}
+
+.flame {
+  width: 14px;
+  height: 24px;
+  background: radial-gradient(ellipse at bottom, #fff 0%, #ffeaa7 30%, #ff9f43 70%, #ee5253 100%);
+  border-radius: 50% 50% 35% 35%;
+  box-shadow: 0 0 16px var(--candle-glow), 0 0 30px rgba(255, 159, 67, 0.4);
+  animation: flicker 1.2s infinite ease-in-out alternate;
+  transform-origin: bottom center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.candle.extinguished .flame {
+  opacity: 0 !important;
+  transform: scale(0.2) !important;
+  animation: none !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.wick {
+  width: 3px;
+  height: 8px;
+  background: #333;
+  margin-top: -2px;
+}
+
+.candle-stick {
+  width: 12px;
+  height: 48px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ff758f,
+    #ff758f 6px,
+    #ffffff 6px,
+    #ffffff 12px
+  );
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.candle:nth-child(2) .candle-stick {
+  background: repeating-linear-gradient(45deg, #f4a261, #f4a261 6px, #ffffff 6px, #ffffff 12px);
+}
+
+.candle:nth-child(3) .candle-stick {
+  background: repeating-linear-gradient(45deg, #a29bfe, #a29bfe 6px, #ffffff 6px, #ffffff 12px);
+}
+
+.candle:nth-child(4) .candle-stick {
+  background: repeating-linear-gradient(45deg, #ff758f, #ff758f 6px, #ffffff 6px, #ffffff 12px);
+}
+
+/* Smoke puff after blow */
+.smoke-puff {
+  position: absolute;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(220, 220, 220, 0.6);
+  filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.candle.extinguished .smoke-puff {
+  animation: smokeRise 1.6s ease-out forwards;
+}
+
+/* Cake Layers */
+.cake-tier-top {
+  width: 160px;
+  height: 55px;
+  background: linear-gradient(to right, #ffd1dc, #ffe5ec, #ffc2d1);
+  border-radius: 12px 12px 6px 6px;
+  position: relative;
+  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 3;
+}
+
+.frosting-drips {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: radial-gradient(circle at 10px 0, #ffffff 10px, transparent 11px);
+  background-size: 20px 20px;
+}
+
+.cake-tier-bottom {
+  width: 220px;
+  height: 70px;
+  background: linear-gradient(to right, #f8edeb, #fae1dd, #fcd5ce);
+  border-radius: 14px 14px 8px 8px;
+  position: relative;
+  margin-top: -6px;
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cake-icing-decor {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: #780000;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Cake Stand */
+.cake-stand {
+  width: 260px;
+  height: 16px;
+  background: linear-gradient(to right, #e0e0e0, #ffffff, #cfcfcf);
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.cake-stand-base {
+  width: 90px;
+  height: 26px;
+  background: linear-gradient(to right, #bdbdbd, #e0e0e0, #a8a8a8);
+  border-radius: 0 0 16px 16px;
+  z-index: 0;
+}
+
+/* Blow Instruction & Mic Button */
+.blow-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.blow-status-text {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.btn-blow-candles {
+  background: linear-gradient(135deg, var(--gold) 0%, #e76f51 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--gold-glow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+
+.btn-blow-candles:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(244, 162, 97, 0.6);
+}
+
+/* Birthday Wish Revealed Card */
+.birthday-letter-card {
+  display: none;
+  background: linear-gradient(135deg, rgba(46, 26, 47, 0.95), rgba(30, 18, 38, 0.95));
+  border: 1px solid rgba(255, 183, 195, 0.35);
+  border-radius: 20px;
+  padding: 36px 30px;
+  margin-top: 25px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  text-align: center;
+}
+
+.bday-header-badge {
+  font-family: var(--font-hand);
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.bday-message {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #f7e6e9;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   STEP 4: The Climax ("Call Me, Nandoos🖤")
+   ========================================================================== */
+.climax-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+/* Smartphone Incoming Call Mockup */
+.phone-call-card {
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(145deg, #23182b, #150f1d);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  padding: 34px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px var(--primary-glow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.caller-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e63946, #780000);
+  border: 3px solid #fff;
+  margin: 0 auto 16px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.5);
+  position: relative;
+}
+
+.avatar-pulse {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  animation: ringPulse 2s infinite ease-out;
+}
+
+.caller-status {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.caller-name {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.caller-note {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: var(--rose-light);
+  margin-bottom: 24px;
+}
+
+/* Big Action Buttons */
+.call-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.btn-direct-call {
+  background: linear-gradient(135deg, #2ec4b6 0%, #06d6a0 100%);
+  color: #0b3c36;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 16px 24px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 8px 25px rgba(6, 214, 160, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.btn-direct-call:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(6, 214, 160, 0.6);
+  color: #052924;
+}
+
+.btn-whatsapp-call {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  transition: var(--transition-smooth);
+}
+
+.btn-whatsapp-call:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+}
+
+/* Playful Question & Moving Evasive Button */
+.playful-decision-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: var(--border-glass);
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  min-height: 180px;
+}
+
+.playful-question {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.decision-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  min-height: 60px;
+}
+
+.btn-forgive-yes {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff4d6d 100%);
+  color: #fff;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--primary-glow);
+  transition: var(--transition-smooth);
+  z-index: 2;
+}
+
+.btn-forgive-yes:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6);
+}
+
+.btn-forgive-no {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Navigation Buttons & Utility Footer
+   ========================================================================== */
+.card-nav-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-nav-prev {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-nav-prev:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.btn-nav-next {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff4d6d 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--primary-glow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  margin-left: auto;
+}
+
+.btn-nav-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.site-footer .footer-heart {
+  color: var(--primary);
+  display: inline-block;
+  animation: heartPulse 1.8s infinite;
+}
+
+/* Audio Autoplay Overlay Dialog */
+.audio-prompt-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 6, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  transition: opacity 0.4s ease;
+}
+
+.audio-prompt-box {
+  background: linear-gradient(145deg, #24192d, #191021);
+  border: 1px solid rgba(255, 183, 195, 0.3);
+  border-radius: 24px;
+  padding: 36px 30px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation: scaleIn 0.4s ease forwards;
+}
+
+.audio-prompt-box .icon {
+  font-size: 2.8rem;
+  margin-bottom: 14px;
+}
+
+.audio-prompt-box h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.audio-prompt-box p {
+  font-size: 0.95rem;
+  color: var(--rose-light);
+  margin-bottom: 24px;
+}
+
+.btn-enter-experience {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff758f 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px var(--primary-glow);
+  transition: var(--transition-smooth);
+  width: 100%;
+}
+
+.btn-enter-experience:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(230, 57, 70, 0.6);
+}
